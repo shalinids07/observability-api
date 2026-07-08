@@ -18,6 +18,14 @@ REQUEST_COUNTER = Counter(
 logs = []
 
 
+@app.get("/")
+def root():
+    return {
+        "message": "Observability API is running",
+        "email": EMAIL
+    }
+
+
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     REQUEST_COUNTER.inc()
